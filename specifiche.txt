@@ -1,1 +1,47 @@
 # SIW-2020-PROGETTO-DAMIANO Specifiche
+USER:
+-Sign up
+-Autenticazione
+-Visualizzare il mio profilo personale
+-Aggiornare il mio profilo
+////////////////////////////
+AGGIUNTE:
+-[ADMIN]Rimuovere un user
+-[ADMIN]Visualizzare una lista di tutti gli user registrati
+
+
+
+
+
+************************************************************************************
+PROJECT:
+-Creare un nuovo progetto
+-Visualizzare i miei progetti
+-Visualizzare i progetti condivisi con me
+-Aggiornare i dati di un mio progetto
+-Cancellare un mio progetto
+-Condividere un mio progetto con un altro utente
+-Aggiungere un Tag ad un mio progetto(TAG)
+================================================
+AGGIUNTE:
+-Visualizzare informazioni su un progetto specifico(con Descrizione, Proprietario,
+	Tags, con chi è condiviso e le task).
+
+************************************************************************************
+TASK:
+-Aggiungere un nuovo task ad un mio progetto
+-Aggiornare un task di un mio progetto
+-Cancellare un task di un mio progetto
+-Assegnareun task di un mio progetto ad un utente che ha visibilità sul mio progetto
+-Aggiungere un Tag ad un task di un mio progetto(TAG)
+-Aggiungere un Commento ad un task di un progetto su cui ho visibilità
+================================================
+AGGIUNTE:
+-Rimuovere un tag da un task a cui era stato associato
+-Rimuovere un commento solo se si è proprietari del progetto o admin
+-Visualizzare tutti i task che un utente ha assegnati
+-Completare un task
+-Visualizzare tutte le informazioni relative ad un task(Descrizione, Stato di
+	completamento, data di creazione e modifica, i tag associati e i commenti
+	a lui associato)
+
