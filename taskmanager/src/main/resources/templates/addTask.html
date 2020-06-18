@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taskmanager Add Task</title>
+</head>
+<body>
+<h1>Add new Task</h1>
+<form id="registerTaskForm"
+      th:action="@{/projects/{projectId}/addTask(projectId=${project.id})}"
+      th:object="${task}"
+      method="post">
+    <table>
+        <tr>
+            <td><label for="taskNameInput">Task Name</label></td>
+            <td><input id="taskNameInput" type="text" placeholder="NAME" th:field="*{name}" required/></td>
+        <!--    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:style="'color:red'"></td>-->
+        </tr>
+        <tr>
+            <td><label for="taskDescriptionInput"></label>Description</td>
+            <td><input id="taskDescriptionInput" type="text" placeholder="DESCRIPTION" th:field="*{description}" required>
+            </td>
+         <!--   <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:style="'color:red'"></td>-->
+        </tr>
+        <tr>
+            <td><button type="submit">Add task</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+<footer><a href="/home">Home</a></footer>
+</html>

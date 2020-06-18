@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>TaskManager</title>
+</head>
+<body>
+<h1>Users Not Members</h1>
+<div>
+	<table class="table table-over">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>lastName</th>
+			<th>AddMember</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each ="user : ${usersList}">
+			<td th:text = "${user.firstName}"></td>
+			<td th:text = "${user.lastName}"></td>
+			<td>
+				<form method="POST" th:action="@{/shareProject/{userId}(userId=${user.id})}">
+					<button type="submit" name="submit" value="value">SHARE WITH</button>
+				</form>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

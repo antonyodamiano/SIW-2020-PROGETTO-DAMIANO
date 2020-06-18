@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taskmanager Add Tag</title>
+</head>
+<body>
+<h1>Add new Tag</h1>
+<form th:if="${project != null}" 
+	  id="registerTaskForm"
+      th:action="@{/projects/{projectId}/addTag(projectId=${project.id})}"
+      th:object="${tag}"
+      method="post">
+    <table>
+        <tr>
+            <td><label for="taskNameInput">Task Name</label></td>
+            <td><input id="taskNameInput" type="text" placeholder="NAME" th:field="*{name}" required/></td>
+        <!--    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:style="'color:red'"></td>-->
+        </tr>
+        <tr>
+            <td><label for="taskNameInput">Task Color</label></td>
+            <td><input id="taskNameInput" type="text" placeholder="NAME" th:field="*{color}" required/></td>
+        <!--    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:style="'color:red'"></td>-->
+        </tr>
+        <tr>
+            <td><label for="taskDescriptionInput"></label>Description</td>
+            <td><input id="taskDescriptionInput" type="text" placeholder="DESCRIPTION" th:field="*{description}" required>
+            </td>
+         <!--   <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:style="'color:red'"></td>-->
+        </tr>
+        <tr>
+            <td><button type="submit">Add tag</button></td>
+        </tr>
+    </table>
+</form>
+<form th:if="${task != null}" 
+	  id="registerTaskForm"
+      th:action="@{/task/{taskId}/addTagTask(taskId=${task.id})}"
+      th:object="${tag}"
+      method="post">
+    <table>
+        <tr>
+            <td><label for="taskNameInput">Task Name</label></td>
+            <td><input id="taskNameInput" type="text" placeholder="NAME" th:field="*{name}" required/></td>
+        <!--    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:style="'color:red'"></td>-->
+        </tr>
+        <tr>
+            <td><label for="taskNameInput">Task Color</label></td>
+            <td><input id="taskNameInput" type="text" placeholder="NAME" th:field="*{color}" required/></td>
+        <!--    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:style="'color:red'"></td>-->
+        </tr>
+        <tr>
+            <td><label for="taskDescriptionInput"></label>Description</td>
+            <td><input id="taskDescriptionInput" type="text" placeholder="DESCRIPTION" th:field="*{description}" required>
+            </td>
+         <!--   <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:style="'color:red'"></td>-->
+        </tr>
+        <tr>
+            <td><button type="submit">Add tag</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+<footer><a href="/home">Home</a></footer>
+</html>

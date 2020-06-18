@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taskmanager task</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td><h1 th:text="${task.name}" style="font-style: italic"></h1></td>
+        <td><h1> relativo a </h1></td>
+        <td><h1><a th:href="'/projects/' + ${project.id}" th:text="${project.name}"></a></h1></td>
+      	<td>
+            <form id="modifyTaskForm" th:action="@{/task/{taskId}/updateTaskForm(taskId=${task.id})}"
+                  method="get">
+                <button th:if="${loggedUser == project.owner}" type="submit" name="submit" value="value">MODIFY</button>
+            </form>
+        </td>
+        <td>
+        	<form method="POST" th:action="@{/projects/{projectId}/task/{taskId}/deleteTask
+        									(projectId = ${project.id},taskId = ${task.id})}">
+					<button th:if="${loggedUser == project.owner}" type="submit" name="submit" value="value">DELETE</button>
+			</form>
+		</td>
+		<td>
+        	<form method="get" th:action="@{/projects/{projectId}/task/{taskId}/assignTask
+        									(projectId = ${project.id},taskId = ${task.id})}">
+					<button th:if="${task.user==null}" type="submit" name="submit" value="value">ASSIGN</button>
+			</form>
+		</td>
+		<td>
+        	<form method="get" th:action="@{/task/{taskId}/addTagTask(taskId = ${task.id})}">
+					<button type="submit" name="submit" value="value">ADD TAG</button>
+			</form>
+		</td>
+    </tr>
+
+    </thead>
+</table>
+
+<div>With Description:</div>
+<div th:text="${task.description}"></div>
+<div>Assigned to:</div>
+<div th:if="${task.user!=null}" th:text="${task.user.firstName}"></div>
+
+<h5>Tags</h5>
+<ul>
+	<li th:each="tag : ${task.tags}">
+		<div th:text="${tag.name}"></div>
+		<div th:text="${tag.color}"></div>
+		<div th:text="${tag.description}"></div>
+	</li>
+</ul>
+<table>
+    <tr>
+        <td><h2>Comments of this task:</h2></td>
+    </tr>
+</table>
+<table>
+		<thead>
+		<tr>
+			<th>Author</th>
+			<th>Text</th>
+			<th>Add</th>
+			<th>DELETE</th>
+		</tr>
+		</thead>
+		<tbody>
+    	<tr th:each="comment : ${task.comments}">
+    	<td th:text="${comment.writer.firstName}"></td>
+    	<td th:text="${comment.description}"></td>
+        <td th:text="${comment.creationTimestamp}"></td>
+        <td>
+            <form th:action="@{/projects/{projectId}/task/{taskId}/deleteComment/{commentId}
+            				(projectId=${project.id},taskId=${task.id},commentId=${comment.id})}" method="post">
+                <button th:if="${loggedUser == project.owner}"type="submit">DELETE</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/projects/{projectId}/task/{taskId}/addComment(projectId=${project.id}, taskId=${task.id})}"
+      th:object=${commentForm}
+      method="post">
+<table>
+        <tr>
+            <td><label for="newComment">New Comment:</label></td>
+            <td><input id="newComment" type="text" placeholder="Write here your comment" 
+            			th:field="*{description}"></td>
+            <td><button type="submit">ADD COMMENT</button></td>
+        </tr>
+</table>
+</form>
+</body>
+<footer><a href="/home">Home</a></footer>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>TaskManager</title>
+</head>
+<body>
+<h1>Visible Projects</h1>
+<div>
+	<table class="table table-over">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Owner</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each ="project : ${visibleProject}">
+			<td th:text = "${project.id}"></td>
+			<td><a th:href="'/projects/' + ${project.id}" th:text = "${project.name}">...</a></td>
+			<td th:text = "${project.owner.firstName}"></td>
+		</tr>
+		</tbody>
+	</table>
+	<h2>Back to <a th:href="@{/home}">Home Page</a></h2>
+</div>
+</body>
+</html>

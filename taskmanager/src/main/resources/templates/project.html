@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>TaskManager</title>
+</head>
+<body>
+<h1 th:text="${project.name}"></h1>
+<form th:action="@{/projects/{projectId}/addTask(projectId=${project.id})}"
+       method="get">
+      <button th:if="${loggedUser == project.owner}" type="submit" name="submit" value="value">Add Task</button>
+</form>
+<form method="GET" th:action="@{/projects/{projectId}/updateForm(projectId = ${project.id})}">
+	<button th:if="${loggedUser == project.owner}" type="submit" name="submit" value="value">UPDATE</button>
+</form>
+<form th:action="@{/projects/{projectId}/addTag(projectId=${project.id})}"
+       method="get">
+      <button th:if="${loggedUser == project.owner}" type="submit" name="submit" value="value">Add Tag</button>
+</form>
+<h4 th:text="${project.description}" style="color:blue"></h4>
+<div th:if="${members.size() > 0}">
+	<h3>Shared With:</h3>
+	<ul>
+		<li th:each="member : ${members}">
+			<div th:text = "${member.firstName} + ' ' +${member.lastName}"></div>
+		</li>
+	</ul>
+</div>
+<h3>Tasks</h3>
+<ul>
+	<li th:each="task : ${tasks}">
+		<div><a th:href="'/projects/' + ${project.id} + '/task/' + ${task.id}"
+			th:text="${task.name}"></a></div>
+		<div th:text="${task.description}"></div>
+	</li>
+</ul>
+<h5>Tags</h5>
+<ul>
+	<li th:each="tag : ${project.tags}">
+		<div th:text="${tag.name}"></div>
+		<div th:text="${tag.color}"></div>
+		<div th:text="${tag.description}"></div>
+	</li>
+</ul>
+<footer>Back to <a th:href="@{/home}">Home</a></footer>
+</body>
+</html>
